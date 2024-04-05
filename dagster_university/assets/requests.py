@@ -1,13 +1,14 @@
-from dagster import Config, asset, MetadataValue, MaterializeResult
-from dagster_duckdb import DuckDBResource
-from smart_open import open
+import base64
 
 import plotly.express as px
 import plotly.io as pio
-import base64
+from dagster import Config, MaterializeResult, MetadataValue, asset
+from dagster_duckdb import DuckDBResource
+from smart_open import open
 
-from . import constants
 from ..resources import smart_open_config
+from . import constants
+
 
 class AdhocRequestConfig(Config):
     filename: str
@@ -15,7 +16,8 @@ class AdhocRequestConfig(Config):
     start_date: str
     end_date: str
 
-## Lesson 9
+
+# Lesson 9
 @asset(
     deps=["taxi_trips", "taxi_zones"],
     compute_kind="Python",

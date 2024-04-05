@@ -1,5 +1,5 @@
-from pathlib import Path
 import os
+from pathlib import Path
 
 S3_BUCKET_PREFIX = os.getenv("S3_BUCKET_PREFIX", "s3://dagster-university/")
 
@@ -16,6 +16,7 @@ def get_path_for_env(path: str) -> str:
         return S3_BUCKET_PREFIX + path
     else:
         return path
+
 
 TAXI_ZONES_FILE_PATH = get_path_for_env("data/raw/taxi_zones.csv")
 TAXI_TRIPS_TEMPLATE_FILE_PATH = get_path_for_env("data/raw/taxi_trips_{}.parquet")
@@ -34,5 +35,9 @@ DATE_FORMAT = "%Y-%m-%d"
 
 START_DATE = "2023-01-01"
 END_DATE = "2023-04-01"
+
+AIRPORT_TRIPS_FILE_PATH = get_path_for_env(os.path.join("data", "outputs", "airport_trips.png"))
+
+DBT_DIRECTORY = Path(__file__).joinpath("..", "..", "..", "analytics").resolve()
 
 AIRPORT_TRIPS_FILE_PATH = get_path_for_env(os.path.join("data", "outputs", "airport_trips.png"))

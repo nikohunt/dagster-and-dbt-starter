@@ -1,11 +1,18 @@
-from dagster_duckdb import DuckDBResource
-from dagster import EnvVar
-import boto3
 import os
 
+import boto3
+from dagster import EnvVar
+from dagster_dbt import DbtCliResource
+from dagster_duckdb import DuckDBResource
+
+from ..assets.constants import DBT_DIRECTORY
 
 database_resource = DuckDBResource(
     database=EnvVar("DUCKDB_DATABASE"),
+)
+
+dbt_resource = DbtCliResource(
+    project_dir=DBT_DIRECTORY,
 )
 
 if os.getenv("DAGSTER_ENVIRONMENT") == "prod":

@@ -1,8 +1,9 @@
-from dagster import MonthlyPartitionsDefinition, WeeklyPartitionsDefinition, DailyPartitionsDefinition
+from dagster import (DailyPartitionsDefinition, MonthlyPartitionsDefinition,
+                     WeeklyPartitionsDefinition)
 
 from ..assets import constants
 
-## Lesson 8 
+# Lesson 8
 start_date = constants.START_DATE
 end_date = constants.END_DATE
 
